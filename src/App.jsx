@@ -26,12 +26,14 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center">
-      <div className="bg-white shadow-md rounded-lg p-6 w-full max-w-md space-y-6">
-        <h1 className="text-xl font-semibold">DXF‑Raumgenerator</h1>
-        <p className="text-slate-600 text-sm">
-          Gib Maße ein und lade eine DXF-Datei herunter. Vorschau & Türen folgen später.
-        </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center p-4">
+      <div className="card space-y-6">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold text-slate-900">DXF‑Raumgenerator</h1>
+          <p className="text-slate-600 text-sm leading-relaxed">
+            Gib Maße ein und lade eine DXF-Datei herunter. Vorschau & Türen folgen später.
+          </p>
+        </div>
 
         <PreviewPlaceholder />
 

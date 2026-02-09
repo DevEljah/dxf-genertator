@@ -1,156 +1,28 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer components {
+  .btn-primary {
+    @apply w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200;
   }
-  a:hover {
-    color: #747bff;
+
+  .input-field {
+    @apply w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .form-label {
+    @apply block text-sm font-medium text-slate-700;
+  }
+
+  .form-group {
+    @apply space-y-2;
+  }
+
+  .card {
+    @apply bg-white shadow-lg rounded-xl p-8 border border-slate-200;
+  }
+
+  .preview-placeholder {
+    @apply w-full h-48 bg-gradient-to-br from-slate-100 to-slate-200 rounded-lg border border-slate-300 flex items-center justify-center text-slate-500 font-medium hover:shadow-sm transition-shadow;
   }
 }
 
-
-/* ///////Mit Tailwind/////// */
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Optional: kleine Politur */
-html,
-body,
-#root {
-  height: 100%;
-}
-
-
-/* //////Ohne Tailwind (Minimal)//// */
-
-:root {
-  color-scheme: light;
-  --bg: #f1f5f9;
-  --panel: #ffffff;
-  --text: #0f172a;
-  --muted: #64748b;
-  --primary: #2563eb;
-  --primary-700: #1d4ed8;
-  --border: #e5e7eb;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue",
-    Arial, "Noto Sans", "Liberation Sans", "Apple Color Emoji", "Segoe UI Emoji";
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html,
-body,
-#root {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  padding-left: 10%;
-}
-
-.container {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 24px;
-}
-
-.panel {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 24px;
-}
-
-input,
-select,
-button {
-  font: inherit;
-}
-
-input,
-select {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-}
-
-button {
-  background: var(--primary);
-  color: #fff;
-  border: 0;
-  padding: 10px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: var(--primary-700);
-}

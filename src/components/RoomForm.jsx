@@ -6,9 +6,9 @@ export default function RoomForm({ config, onChange, onGenerate }) {
   };
 
   return (
-    <div className="space-y-3">
-      <div>
-        <label htmlFor="width" className="block text-sm mb-1">
+    <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); onGenerate(); }}>
+      <div className="form-group">
+        <label htmlFor="width" className="form-label">
           Breite
         </label>
         <input
@@ -16,12 +16,14 @@ export default function RoomForm({ config, onChange, onGenerate }) {
           type="number"
           value={config.width}
           onChange={handleChange("width")}
-          className="w-full border rounded px-2 py-1"
+          className="input-field"
+          min="0.1"
+          step="0.1"
         />
       </div>
 
-      <div>
-        <label htmlFor="depth" className="block text-sm mb-1">
+      <div className="form-group">
+        <label htmlFor="depth" className="form-label">
           Tiefe
         </label>
         <input
@@ -29,12 +31,14 @@ export default function RoomForm({ config, onChange, onGenerate }) {
           type="number"
           value={config.depth}
           onChange={handleChange("depth")}
-          className="w-full border rounded px-2 py-1"
+          className="input-field"
+          min="0.1"
+          step="0.1"
         />
       </div>
 
-      <div>
-        <label htmlFor="wallThickness" className="block text-sm mb-1">
+      <div className="form-group">
+        <label htmlFor="wallThickness" className="form-label">
           Wandstärke
         </label>
         <input
@@ -42,20 +46,21 @@ export default function RoomForm({ config, onChange, onGenerate }) {
           type="number"
           value={config.wallThickness}
           onChange={handleChange("wallThickness")}
-          className="w-full border rounded px-2 py-1"
+          className="input-field"
+          min="0.01"
           step="0.01"
         />
       </div>
 
-      <div>
-        <label htmlFor="unit" className="block text-sm mb-1">
+      <div className="form-group">
+        <label htmlFor="unit" className="form-label">
           Einheit
         </label>
         <select
           id="unit"
           value={config.unit}
           onChange={handleChange("unit")}
-          className="w-full border rounded px-2 py-1"
+          className="input-field"
         >
           <option value="m">Meter</option>
           <option value="cm">Zentimeter</option>
@@ -63,11 +68,11 @@ export default function RoomForm({ config, onChange, onGenerate }) {
       </div>
 
       <button
-        onClick={onGenerate}
-        className="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        type="submit"
+        className="btn-primary mt-2"
       >
         DXF generieren
       </button>
-    </div>
+    </form>
   );
 }
