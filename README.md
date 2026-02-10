@@ -39,7 +39,7 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 
 ---
 
-### 🔜 Version 1.1 – Türen (NÄCHSTER SCHRITT)
+### ✅ Version 1.1 – Türen (IMPLEMENTIERT)
 **Geplante Features:**
 - Tür hinzufügen (an Außenwand)
 - Parameter:
@@ -50,11 +50,11 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 - Neuer Layer: `OEFFNUNG` (Tür/Fenster)
 - Realistische Grundrisse mit Wandöffnungen
 
-**Status:** ⏳ Wird als Nächstes implementiert
+**Status:** ✔️ Implementiert (Version 1.1)
 
 ---
 
-### 🔮 Version 1.2 – Vorschau & UX
+### ✅ Version 1.2 – Vorschau & UX (IMPLEMENTIERT)
 **Geplante Features:**
 - SVG-Vorschau direkt im Browser
 - Input-Validierung:
@@ -64,7 +64,7 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 - UI-Überarbeitung & bessere Struktur
 - Aussagekräftige Fehlermeldungen
 
-**Status:** Nach Version 1.1
+**Status:** ✔️ Implementiert (Version 1.2)
 
 ---
 

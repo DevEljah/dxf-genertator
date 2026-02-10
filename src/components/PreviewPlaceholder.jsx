@@ -8,9 +8,9 @@ function convertToMm(value, unit) {
 }
 
 export default function PreviewPlaceholder({ config }) {
-  const svgW = 480;
-  const svgH = 360;
-  const pad = 20;
+  const svgW = 300;
+  const svgH = 240;
+  const pad = 10;
 
   const roomW = convertToMm(config.width || 0, config.unit);
   const roomH = convertToMm(config.depth || 0, config.unit);
@@ -74,8 +74,8 @@ export default function PreviewPlaceholder({ config }) {
   addVertical(0, roomH, 0, grouped.left || []);
 
   return (
-    <div className="preview-placeholder border bg-white rounded p-2">
-      <svg width={svgW} height={svgH} viewBox={`0 0 ${svgW} ${svgH}`}>
+    <div style={{ width: "100%", maxWidth: "300px", margin: "0 auto" }}>
+      <svg viewBox={`0 0 ${svgW} ${svgH}`} style={{ width: "100%", height: "auto", display: "block", border: "1px solid #e2e8f0", borderRadius: "0.375rem", background: "#fff" }} preserveAspectRatio="xMidYMid meet">
         <rect x="0" y="0" width={svgW} height={svgH} fill="transparent" />
 
         {/* draw wall segments */}
