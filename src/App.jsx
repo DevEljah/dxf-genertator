@@ -10,7 +10,47 @@ export default function App() {
     depth: 4,
     wallThickness: 0.24,
     unit: "m",
+    openings: [
+      {
+        id: "opening-1",
+        type: "door",
+        side: "right",
+        width: 0.9,
+        distance: 0.5,
+      }
+    ]
   });
+
+  const handleAddOpening = () => {
+    const newId = `opening-${Date.now()}`;
+    setConfig({
+      ...config,
+      openings: [
+        ...config.openings,
+        {
+          id: newId,
+          type: "window",
+          side: "right",
+          width: 1.2,
+          distance: 1,
+        }
+      ]
+    });
+  };
+
+  const handleRemoveOpening = (id) => {
+    setConfig({
+      ...config,
+      openings: config.openings.filter(o => o.id !== id)
+    });
+  };
+
+  const handleUpdateOpening = (id, updatedFields) => {
+    setConfig({
+      ...config,
+      openings: config.openings.map(o => o.id === id ? { ...o, ...updatedFields } : o)
+    });
+  };
 
   const handleGenerate = () => {
     const dxfString = generateRoomDXF(config);
@@ -31,13 +71,20 @@ export default function App() {
         <div className="space-y-2">
           <h1 className="text-3xl font-bold text-slate-900">DXF‑Raumgenerator</h1>
           <p className="text-slate-600 text-sm leading-relaxed">
-            Gib Maße ein und lade eine DXF-Datei herunter. Vorschau & Türen folgen später.
+            Gib Maße ein, füge Fenster & Türen hinzu und lade eine DXF-Datei herunter.
           </p>
         </div>
 
-        <PreviewPlaceholder />
+        <PreviewPlaceholder config={config} />
 
-        <RoomForm config={config} onChange={setConfig} onGenerate={handleGenerate} />
+        <RoomForm 
+          config={config} 
+          onChange={setConfig}
+          onAddOpening={handleAddOpening}
+          onRemoveOpening={handleRemoveOpening}
+          onUpdateOpening={handleUpdateOpening}
+          onGenerate={handleGenerate} 
+        />
       </div>
     </div>
   );
