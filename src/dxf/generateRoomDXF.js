@@ -211,8 +211,8 @@ function drawOpeningMarker(dxf, roomWidth, roomDepth, opening) {
       // Tür schwingt nach unten (in den Raum)
       hx = roomWidth - distanceMm; // WICHTIG: Spiegelung!
       hy = roomDepth;
-      startDeg = 180; // 180°
-      endDeg = 270; // 270°
+      startDeg = 180;
+      endDeg = 270;
     } else if (side === "left") {
       // Tür schwingt nach rechts (in den Raum)
       hx = 0;
