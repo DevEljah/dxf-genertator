@@ -9,12 +9,15 @@ Ein React + Vite Webanwendung zur automatischen Generierung von DXF-Dateien (CAD
 ## Projektübersicht
 
 ### Was ist DXF-Generator?
+
 Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perfekt für:
+
 - Schnelle CAD-Grundelemente ohne teure Software
 - Architektur- und Planungsprojekte
 - Automatisierte Raumgenerierung
 
 ### Tech-Stack
+
 - **React 19** mit React Compiler
 - **Vite 7** (Bundler + Dev-Server)
 - **dxf-writer** (1.18.4) – DXF-Generierung
@@ -25,7 +28,9 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 ## Versionsübersicht & Roadmap
 
 ### ✅ Version 1.0 – MVP (FERTIG)
+
 **Features:**
+
 - Eingabe: Breite, Tiefe, Wandstärke, Einheit (m/cm)
 - Automatische Umrechnung in Millimeter
 - DXF-Generierung mit 2 Layern:
@@ -40,7 +45,9 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 ---
 
 ### ✅ Version 1.1 – Türen (IMPLEMENTIERT)
+
 **Geplante Features:**
+
 - Tür hinzufügen (an Außenwand)
 - Parameter:
   - Türseite (oben, unten, links, rechts)
@@ -55,7 +62,9 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 ---
 
 ### ✅ Version 1.2 – Vorschau & UX (IMPLEMENTIERT)
+
 **Geplante Features:**
+
 - SVG-Vorschau direkt im Browser
 - Input-Validierung:
   - Keine negativen Werte
@@ -69,7 +78,9 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 ---
 
 ### 🌟 Version 1.3 – Komfort-Features
+
 **Mögliche Erweiterungen:**
+
 - Fenster-Öffnungen (Layer `OEFFNUNG`)
 - Bemaßungslinien (Layer `MASSE`)
 - Presets für Wandstärken (11.5, 17.5, 24 cm)
@@ -81,7 +92,9 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 ---
 
 ### 🏗️ Version 1.4+ – Profi-Features (Zukunft)
+
 **Langfristige Ideen:**
+
 - Mehrraum-Layouts
 - IFC-Export
 - 3D-Extrusionen
@@ -97,22 +110,26 @@ Ein Tool zur Erstellung von Grundrissen und Raumgeometrien als DXF-Dateien. Perf
 ## Schnelleinstieg
 
 ### Installation
+
 ```bash
 npm install
 ```
 
 ### Entwicklung
+
 ```bash
 npm run dev      # Vite Dev-Server (HMR aktiviert)
 ```
 
 ### Build
+
 ```bash
 npm run build    # Produktions-Build → dist/
 npm run preview  # Built-Output lokals anschauen
 ```
 
 ### Linting
+
 ```bash
 npm run lint     # ESLint Prüfung
 ```
@@ -152,3 +169,5 @@ src/
 
 **Entwickler:** Eljah  
 **Stand:** Februar 2026
+
+Commit Test 01
