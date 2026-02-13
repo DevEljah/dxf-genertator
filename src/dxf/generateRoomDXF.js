@@ -219,6 +219,9 @@ function drawOpeningMarker(dxf, roomWidth, roomDepth, wallMm, opening) {
     // Pfosten-Layer (weiß)
     const PFOSTEN = "FENSTER_PFOSTEN";
 
+    //
+    //  BOTTOM
+    //
     if (side === "bottom") {
       const x1 = distanceMm;
       const x2 = distanceMm + widthMm;
@@ -227,7 +230,7 @@ function drawOpeningMarker(dxf, roomWidth, roomDepth, wallMm, opening) {
       dxf.setActiveLayer("FENSTER");
       dxf.drawLine(x1, 0, x2, 0);
 
-      // Pfosten (weiß)
+      // Außenpfosten (weiß)
       dxf.setActiveLayer(PFOSTEN);
       dxf.drawLine(x1, 0, x1, wallMm);
       dxf.drawLine(x2, 0, x2, wallMm);
@@ -237,12 +240,23 @@ function drawOpeningMarker(dxf, roomWidth, roomDepth, wallMm, opening) {
       dxf.drawLine(x1, seg, x2, seg);
       dxf.drawLine(x1, 2 * seg, x2, 2 * seg);
 
-      // Pfosten verbinden (weiß)
+      // Außenpfosten verbinden (weiß)
       dxf.setActiveLayer(PFOSTEN);
       dxf.drawLine(x1, seg, x1, 2 * seg);
       dxf.drawLine(x2, seg, x2, 2 * seg);
+
+      // Mittelpfosten (cyan) → Quadrate links & rechts
+      const mid1 = x1 + seg;
+      const mid2 = x2 - seg;
+
+      dxf.setActiveLayer("FENSTER");
+      dxf.drawLine(mid1, seg, mid1, 2 * seg);
+      dxf.drawLine(mid2, seg, mid2, 2 * seg);
     }
 
+    //
+    //  TOP
+    //
     if (side === "top") {
       const x1 = roomWidth - distanceMm - widthMm;
       const x2 = roomWidth - distanceMm;
@@ -250,19 +264,33 @@ function drawOpeningMarker(dxf, roomWidth, roomDepth, wallMm, opening) {
       dxf.setActiveLayer("FENSTER");
       dxf.drawLine(x1, roomDepth, x2, roomDepth);
 
+      // Außenpfosten (weiß)
       dxf.setActiveLayer(PFOSTEN);
       dxf.drawLine(x1, roomDepth - wallMm, x1, roomDepth);
       dxf.drawLine(x2, roomDepth - wallMm, x2, roomDepth);
 
+      // Fensterlinien (cyan)
       dxf.setActiveLayer("FENSTER");
       dxf.drawLine(x1, roomDepth - seg, x2, roomDepth - seg);
       dxf.drawLine(x1, roomDepth - 2 * seg, x2, roomDepth - 2 * seg);
 
+      // Außenpfosten verbinden (weiß)
       dxf.setActiveLayer(PFOSTEN);
       dxf.drawLine(x1, roomDepth - seg, x1, roomDepth - 2 * seg);
       dxf.drawLine(x2, roomDepth - seg, x2, roomDepth - 2 * seg);
+
+      // Mittelpfosten (cyan)
+      const mid1 = x1 + seg;
+      const mid2 = x2 - seg;
+
+      dxf.setActiveLayer("FENSTER");
+      dxf.drawLine(mid1, roomDepth - seg, mid1, roomDepth - 2 * seg);
+      dxf.drawLine(mid2, roomDepth - seg, mid2, roomDepth - 2 * seg);
     }
 
+    //
+    //  LEFT
+    //
     if (side === "left") {
       const y1 = roomDepth - distanceMm - widthMm;
       const y2 = roomDepth - distanceMm;
@@ -270,19 +298,33 @@ function drawOpeningMarker(dxf, roomWidth, roomDepth, wallMm, opening) {
       dxf.setActiveLayer("FENSTER");
       dxf.drawLine(0, y1, 0, y2);
 
+      // Außenpfosten (weiß)
       dxf.setActiveLayer(PFOSTEN);
       dxf.drawLine(0, y1, wallMm, y1);
       dxf.drawLine(0, y2, wallMm, y2);
 
+      // Fensterlinien (cyan)
       dxf.setActiveLayer("FENSTER");
       dxf.drawLine(seg, y1, seg, y2);
       dxf.drawLine(2 * seg, y1, 2 * seg, y2);
 
+      // Außenpfosten verbinden (weiß)
       dxf.setActiveLayer(PFOSTEN);
       dxf.drawLine(seg, y1, 2 * seg, y1);
       dxf.drawLine(seg, y2, 2 * seg, y2);
+
+      // Mittelpfosten (cyan)
+      const mid1 = y1 + seg;
+      const mid2 = y2 - seg;
+
+      dxf.setActiveLayer("FENSTER");
+      dxf.drawLine(seg, mid1, 2 * seg, mid1);
+      dxf.drawLine(seg, mid2, 2 * seg, mid2);
     }
 
+    //
+    //  RIGHT
+    //
     if (side === "right") {
       const y1 = distanceMm;
       const y2 = distanceMm + widthMm;
@@ -290,17 +332,28 @@ function drawOpeningMarker(dxf, roomWidth, roomDepth, wallMm, opening) {
       dxf.setActiveLayer("FENSTER");
       dxf.drawLine(roomWidth, y1, roomWidth, y2);
 
+      // Außenpfosten (weiß)
       dxf.setActiveLayer(PFOSTEN);
       dxf.drawLine(roomWidth - wallMm, y1, roomWidth, y1);
       dxf.drawLine(roomWidth - wallMm, y2, roomWidth, y2);
 
+      // Fensterlinien (cyan)
       dxf.setActiveLayer("FENSTER");
       dxf.drawLine(roomWidth - seg, y1, roomWidth - seg, y2);
       dxf.drawLine(roomWidth - 2 * seg, y1, roomWidth - 2 * seg, y2);
 
+      // Außenpfosten verbinden (weiß)
       dxf.setActiveLayer(PFOSTEN);
       dxf.drawLine(roomWidth - seg, y1, roomWidth - 2 * seg, y1);
       dxf.drawLine(roomWidth - seg, y2, roomWidth - 2 * seg, y2);
+
+      // Mittelpfosten (cyan)
+      const mid1 = y1 + seg;
+      const mid2 = y2 - seg;
+
+      dxf.setActiveLayer("FENSTER");
+      dxf.drawLine(roomWidth - seg, mid1, roomWidth - 2 * seg, mid1);
+      dxf.drawLine(roomWidth - seg, mid2, roomWidth - 2 * seg, mid2);
     }
   }
 }
