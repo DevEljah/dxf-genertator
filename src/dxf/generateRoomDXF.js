@@ -139,6 +139,11 @@ function drawWallSegment(dxf, start, end, openings, orientation) {
       const openingStart = start.x + opening.distanceMm * direction;
       const openingEnd = openingStart + opening.widthMm * direction;
 
+      // Fenster sollen die Wand NICHT unterbrechen
+      if (opening.type === "window") {
+        return; // Fenster überspringen
+      }
+
       if (direction > 0) {
         if (currentX < openingStart) {
           dxf.drawLine(currentX, y, openingStart, y);
@@ -168,6 +173,11 @@ function drawWallSegment(dxf, start, end, openings, orientation) {
     openings.forEach((opening) => {
       const openingStart = start.y + opening.distanceMm * direction;
       const openingEnd = openingStart + opening.widthMm * direction;
+
+      // Fenster sollen die Wand NICHT unterbrechen
+      if (opening.type === "window") {
+        return; // Fenster überspringen
+      }
 
       if (direction > 0) {
         if (currentY < openingStart) {
