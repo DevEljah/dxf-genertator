@@ -1,6 +1,3 @@
-
-import React from "react";
-
 function convertToMm(value, unit) {
   if (unit === "m") return value * 1000;
   if (unit === "cm") return value * 10;
@@ -16,7 +13,10 @@ export default function PreviewPlaceholder({ config }) {
   const roomH = convertToMm(config.depth || 0, config.unit);
   const wall = convertToMm(config.wallThickness || 0, config.unit);
 
-  const scale = Math.min((svgW - pad * 2) / Math.max(roomW, 1), (svgH - pad * 2) / Math.max(roomH, 1));
+  const scale = Math.min(
+    (svgW - pad * 2) / Math.max(roomW, 1),
+    (svgH - pad * 2) / Math.max(roomH, 1),
+  );
 
   const toPxX = (x) => pad + x * scale;
   const toPxY = (y) => pad + (roomH - y) * scale; // flip Y so origin bottom-left
@@ -31,7 +31,9 @@ export default function PreviewPlaceholder({ config }) {
   const groupBySide = () => {
     const grouped = { bottom: [], top: [], left: [], right: [] };
     openings.forEach((o) => grouped[o.side].push(o));
-    Object.keys(grouped).forEach((k) => grouped[k].sort((a, b) => a.distanceMm - b.distanceMm));
+    Object.keys(grouped).forEach((k) =>
+      grouped[k].sort((a, b) => a.distanceMm - b.distanceMm),
+    );
     return grouped;
   };
 
@@ -51,7 +53,8 @@ export default function PreviewPlaceholder({ config }) {
       }
       cur = e;
     });
-    if ((dir > 0 && cur < endX) || (dir < 0 && cur > endX)) wallLines.push([cur, y, endX, y]);
+    if ((dir > 0 && cur < endX) || (dir < 0 && cur > endX))
+      wallLines.push([cur, y, endX, y]);
   };
 
   const addVertical = (x, startY, endY, sideOpenings) => {
@@ -65,7 +68,8 @@ export default function PreviewPlaceholder({ config }) {
       }
       cur = e;
     });
-    if ((dir > 0 && cur < endY) || (dir < 0 && cur > endY)) wallLines.push([x, cur, x, endY]);
+    if ((dir > 0 && cur < endY) || (dir < 0 && cur > endY))
+      wallLines.push([x, cur, x, endY]);
   };
 
   addHorizontal(0, 0, roomW, grouped.bottom || []);
@@ -75,7 +79,18 @@ export default function PreviewPlaceholder({ config }) {
 
   return (
     <div style={{ width: "100%", maxWidth: "300px", margin: "0 auto" }}>
-      <svg viewBox={`0 0 ${svgW} ${svgH}`} style={{ width: "100%", height: "auto", display: "block", border: "1px solid #e2e8f0", borderRadius: "0.375rem", background: "#fff" }} preserveAspectRatio="xMidYMid meet">
+      <svg
+        viewBox={`0 0 ${svgW} ${svgH}`}
+        style={{
+          width: "100%",
+          height: "auto",
+          display: "block",
+          border: "1px solid #e2e8f0",
+          borderRadius: "0.375rem",
+          background: "#fff",
+        }}
+        preserveAspectRatio="xMidYMid meet"
+      >
         <rect x="0" y="0" width={svgW} height={svgH} fill="transparent" />
 
         {/* draw wall segments */}
@@ -148,26 +163,31 @@ export default function PreviewPlaceholder({ config }) {
             let start = 0;
             let end = Math.PI / 2;
             const r = op.widthMm;
+
             if (op.side === "bottom") {
+              // schwingt nach oben
               cx = op.distanceMm;
               cy = 0;
               start = 0;
               end = Math.PI / 2;
             } else if (op.side === "top") {
-              cx = roomW - op.distanceMm;
+              // Tür schwingt nach unten (in den Raum)
+              cx = roomW - op.distanceMm; // WICHTIG: Spiegelung wie im DXF
               cy = roomH;
-              start = Math.PI;
-              end = Math.PI / 2;
+              start = Math.PI; // 180°
+              end = (3 * Math.PI) / 2; // 270°
             } else if (op.side === "left") {
+              // schwingt nach rechts
               cx = 0;
               cy = roomH - op.distanceMm;
               start = (3 * Math.PI) / 2;
               end = 2 * Math.PI;
             } else if (op.side === "right") {
+              // schwingt nach links
               cx = roomW;
               cy = op.distanceMm;
               start = Math.PI / 2;
-              end = 0;
+              end = Math.PI;
             }
 
             for (let i = 0; i <= steps; i++) {

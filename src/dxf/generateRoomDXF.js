@@ -1,4 +1,3 @@
-
 import Drawing from "dxf-writer";
 
 // interne Umrechnung auf Millimeter
@@ -78,7 +77,7 @@ function drawOuterWallWithOpenings(dxf, width, depth, openings) {
     { x: 0, y: 0 },
     { x: width, y: 0 },
     openingsBySide["bottom"] || [],
-    "horizontal"
+    "horizontal",
   );
 
   // Right Wall (X=width, Y von 0 bis depth)
@@ -87,7 +86,7 @@ function drawOuterWallWithOpenings(dxf, width, depth, openings) {
     { x: width, y: 0 },
     { x: width, y: depth },
     openingsBySide["right"] || [],
-    "vertical"
+    "vertical",
   );
 
   // Top Wall (Y=depth, X von width bis 0)
@@ -96,7 +95,7 @@ function drawOuterWallWithOpenings(dxf, width, depth, openings) {
     { x: width, y: depth },
     { x: 0, y: depth },
     openingsBySide["top"] || [],
-    "horizontal"
+    "horizontal",
   );
 
   // Left Wall (X=0, Y von depth bis 0)
@@ -105,7 +104,7 @@ function drawOuterWallWithOpenings(dxf, width, depth, openings) {
     { x: 0, y: depth },
     { x: 0, y: 0 },
     openingsBySide["left"] || [],
-    "vertical"
+    "vertical",
   );
 }
 
@@ -203,25 +202,29 @@ function drawOpeningMarker(dxf, roomWidth, roomDepth, opening) {
     let endDeg = 90;
 
     if (side === "bottom") {
+      // Tür schwingt nach oben (in den Raum)
       hx = distanceMm;
       hy = 0;
       startDeg = 0;
       endDeg = 90;
     } else if (side === "top") {
-      hx = roomWidth - distanceMm;
+      // Tür schwingt nach unten (in den Raum)
+      hx = distanceMm;
       hy = roomDepth;
       startDeg = 180;
-      endDeg = 90;
+      endDeg = 270;
     } else if (side === "left") {
+      // Tür schwingt nach rechts (in den Raum)
       hx = 0;
       hy = roomDepth - distanceMm;
       startDeg = 270;
       endDeg = 360;
     } else if (side === "right") {
+      // Tür schwingt nach links (in den Raum)
       hx = roomWidth;
       hy = distanceMm;
       startDeg = 90;
-      endDeg = 0;
+      endDeg = 180;
     }
 
     const radius = widthMm; // door leaf length ~ opening width
